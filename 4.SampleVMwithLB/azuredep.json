@@ -31,7 +31,6 @@
       },
       "dnsNameforLBIP": { 
         "type": "string",
-        "defaultValue":"mzajaclb",
         "metadata": {
           "description": "DNS for Load Balancer IP"
         }
