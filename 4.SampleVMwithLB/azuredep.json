@@ -8,6 +8,7 @@
         "metadata":{
           "description": "Number of instances"
         }
+      },
       "storageAccountName": {
         "type": "string",
         "defaultValue":  "mzajac",
