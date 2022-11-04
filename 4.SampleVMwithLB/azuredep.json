@@ -5,7 +5,7 @@
       "numberOfInstances": {
         "type": "int",
         "defaultValue": 3,
-        "metadata":{
+        "metadata": {
           "description": "Number of instances"
         }
       },
@@ -32,6 +32,7 @@
       },
       "dnsNameforLBIP": { 
         "type": "string",
+          "defaultValue": "mzajacdns",
         "metadata": {
           "description": "DNS for Load Balancer IP"
         }
