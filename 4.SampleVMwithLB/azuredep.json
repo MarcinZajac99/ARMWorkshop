@@ -37,7 +37,7 @@
           "description": "DNS for Load Balancer IP"
         }
       },
-      "vmNamePrefix": { "cw2"
+      "vmNamePrefix": {
         "type": "string",
         "defaultValue": "myVM",
         "metadata": {
