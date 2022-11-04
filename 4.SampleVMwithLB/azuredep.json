@@ -2,31 +2,41 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
     "contentVersion": "1.0.0.0",
     "parameters": {
+      "numberOfInstances": {
+        "type": "int",
+        "defaultValue": 3,
+        "metadata":{
+          "description": "Number of instances"
+        }
       "storageAccountName": {
         "type": "string",
+        "defaultValue":  "mzajac",
         "metadata": {
           "description": "Name of storage account"
         }
       },
-      "adminUsername": {
+      "adminUsername": { 
         "type": "string",
+        "defaultValue":  "mzajac99",
         "metadata": {
           "description": "Admin username"
         }
       },
-      "adminPassword": {
+      "adminPassword": { 
         "type": "securestring",
+        "defaultValue": "Password1!",
         "metadata": {
           "description": "Admin password"
         }
       },
-      "dnsNameforLBIP": {
+      "dnsNameforLBIP": { 
         "type": "string",
+        "defaultValue":"mzajaclb",
         "metadata": {
           "description": "DNS for Load Balancer IP"
         }
       },
-      "vmNamePrefix": {
+      "vmNamePrefix": { "cw2"
         "type": "string",
         "defaultValue": "myVM",
         "metadata": {
@@ -84,7 +94,7 @@
       },
       "vmSize": {
         "type": "string",
-        "defaultValue": "Standard_A0",
+        "defaultValue": "Standard_D2_v2",
         "metadata": {
           "description": "Size of the VM"
         }
@@ -99,7 +109,6 @@
       "publicIPAddressType": "Dynamic",
       "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), variables ('subnetName'))]",
       "publicIPAddressID": "[resourceId('Microsoft.Network/publicIPAddresses',parameters('publicIPAddressName'))]",
-      "numberOfInstances": 2,
       "lbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('lbName'))]",
       "frontEndIPConfigID": "[concat(variables('lbID'),'/frontendIPConfigurations/LoadBalancerFrontEnd')]",
       "lbPoolID": "[concat(variables('lbID'),'/backendAddressPools/BackendPool1')]",
@@ -167,7 +176,7 @@
         "location": "[resourceGroup().location]",
         "copy": {
           "name": "nicLoop",
-          "count": "[variables('numberOfInstances')]"
+          "count": "[parameters('numberOfInstances')]"
         },
         "dependsOn": [
           "[concat('Microsoft.Network/virtualNetworks/', parameters('vnetName'))]",
@@ -287,7 +296,7 @@
         "name": "[concat(parameters('vmNamePrefix'), copyindex())]",
         "copy": {
           "name": "virtualMachineLoop",
-          "count": "[variables('numberOfInstances')]"
+          "count": "[parameters('numberOfInstances')]"
         },
         "location": "[resourceGroup().location]",
         "dependsOn": [
